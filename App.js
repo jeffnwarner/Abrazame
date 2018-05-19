@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import Config from 'react-native-config';
+import { StackNavigator } from 'react-navigation'; 
 import {
 	API_KEY,
 	AUTH_DOMAIN,
@@ -16,8 +17,12 @@ import {
 } from 'react-native-dotenv';
 import * as firebase from 'firebase';
 import SignInForm from './app/SignInForm/SignInForm.js';
+import RegisterForm from './app/RegisterForm/RegisterForm.js';
+import AdditionalInfo from './app/RegisterForm/AdditionalInfo.js';
+import ForgotPassword from './app/SignInForm/ForgotPassword.js';
+//import Navigation from './app/components/Navigation.js';
 
-export default class App extends Component {
+export default class Abrazame extends React.Component {
 	componentWillMount() {
 		firebase.initializeApp({
 			apiKey: API_KEY,
@@ -30,11 +35,18 @@ export default class App extends Component {
 	}
 	render() {
 		return (
-			<View>
-				<SignInForm />
-			</View>
+			<Navigation />
 		);
 	}
 }
     
-AppRegistry.registerComponent('App', () => App);
+//AppRegistry.registerComponent('Abrazame', () => Abrazame);
+
+const Navigation = StackNavigator({
+	SignIn: {screen: SignInForm},
+	Register: {screen: RegisterForm},
+	Additional: {screen: AdditionalInfo},
+	Forgot: {screen: ForgotPassword},
+});
+
+//export default Navigation;

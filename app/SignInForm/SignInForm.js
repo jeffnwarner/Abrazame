@@ -2,43 +2,50 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
+import RegisterForm from '../RegisterForm/RegisterForm.js';
+//import Feed from '../Feed/Feed.js';
 import styles from './styles.js';
 
-class SignInForm extends Component {
-	state = {email: '', password: '', error: '', loading: false};
+class SignInForm extends React.Component {
+	state = {username: '', password: '', error: '', loading: false};
+	static navigationOptions = { title: 'Sign In Form'};
+
 	onSignInPress() {
 		this.setState({ error: '', loading: true });
-		const { email, password } = this.state;
+		const { username, password } = this.state;
+		email = this.state.username + "@abrazame.com";
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.then(() => { 
 			this.setState({error: '', loading: false}); 
 			})
 		.catch(() => {
-			firebase.auth().createUserWithEmailAndPassword(email, password)
-			.then(() => {
-				this.setState({ error: '', loading: false});
-			})
-			.catch(() => {
-				this.setState({ error: 'Authentication failed.', loading: false });
-			})
+			this.setState({ error: 'Invalid Username / Password', loading: false });
 		})
+		//navigate('Feed', {});
 	}
 
 	renderButtonOrLoading() {
+		const { navigate } = this.props.navigation;
 		if (this.state.loading) {
 			return <Text>Loading...</Text>
 		}
-		return <Button onPress={this.onSignInPress.bind(this)} title="Log in" />;
+		return (
+			<View>
+				<Button onPress={this.onSignInPress.bind(this)} title="Log in" />
+				<Button onPress={() => navigate('Register', {})} title="Create an account?" />
+				<Button onPress={() => navigate('Forgot', {})} title="Forgot Password?" />
+			</View>
+		);
 	}
 
 	render() {
 		return (
 			<View> 
 				<TextInputField
-					label='Email Address'
+					label='Username'
 					placeholder='username'
-					value={this.state.email}
-					onChangeText={email => this.setState({ email })}
+					value={this.state.username}
+					onChangeText={username => this.setState({ username })}
 					autoCorrect={false}
 				/>
 
