@@ -32,7 +32,7 @@ class SignInForm extends React.Component {
 		return (
 			<View>
 				<Button onPress={this.onSignInPress.bind(this)} title="Log in" />
-				<Button onPress={() => navigate('Register', {})} title="Create an account?" />
+				<Button onPress={() => navigate('Register', {})} title="Create an account" />
 				<Button onPress={() => navigate('Forgot', {})} title="Forgot Password?" />
 			</View>
 		);
