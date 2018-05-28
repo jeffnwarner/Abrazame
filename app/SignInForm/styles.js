@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 	},
 	container:{
 		flex:1,
-		backgroundColor: 'rgb(89, 199, 255)',
+		backgroundColor: 'rgb(224, 224, 224)',
 		flexDirection: 'column',
 	},
 	logoContainer:{

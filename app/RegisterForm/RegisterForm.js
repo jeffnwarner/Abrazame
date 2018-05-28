@@ -47,7 +47,7 @@ class RegisterForm extends React.Component {
 
 	render() {
 		return (
-			<View> 
+			<View style ={styles.container}> 
 				<TextInputField
 					label='Username'
 					placeholder='username'

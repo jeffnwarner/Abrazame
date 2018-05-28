@@ -7,7 +7,12 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		paddingTop: 10,
 		paddingBottom: 10
-	}
+	},
+	container:{
+		flex:1,
+		backgroundColor: 'rgb(224, 224, 224)',
+		flexDirection: 'column',
+	},
 });
 
 export default styles;
