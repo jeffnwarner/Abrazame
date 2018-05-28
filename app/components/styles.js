@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 	},
 	containerStyle: {
-		height: 45,
+		height: 50,
 		flexDirection: 'column',
 		alignItems: 'flex-start',
 		width: '100%',
