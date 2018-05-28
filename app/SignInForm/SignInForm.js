@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, SafeAreaView, Image } from 'react-native';
+import { View, Text, Button, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
 import RegisterForm from '../RegisterForm/RegisterForm.js';
@@ -8,7 +8,7 @@ import styles from './styles.js';
 
 class SignInForm extends React.Component {
 	state = {username: '', password: '', error: '', loading: false};
-	static navigationOptions = { title: 'Sign In Form'};
+	static navigationOptions = { title: 'Sign In'};
 
 	onSignInPress() {
 		this.setState({ error: '', loading: true });
@@ -31,37 +31,48 @@ class SignInForm extends React.Component {
 		}
 		return (
 			<View>
-				<Button onPress={this.onSignInPress.bind(this)} title="Log in" />
-				<Button onPress={() => navigate('Register', {})} title="Create an account" />
-				<Button onPress={() => navigate('Forgot', {})} title="Forgot Password?" />
+				<Button onPress={this.onSignInPress.bind(this)} 
+				title="Log in" 
+				/>
+				<Button onPress={() => navigate('Register', {})} 
+				title="Create an account" 
+				/>
+				<Button onPress={() => navigate('Forgot', {})} 
+				title="Forgot Password?" 
+				/>
+				
 			</View>
 		);
 	}
 
 	render() {
 		return (
-			<SafeAreaView style ={styles.container}>
+			<KeyboardAvoidingView style ={styles.container}>
 				<View style = {styles.logoContainer}>
 					<Image style = {styles.logo}
 						source ={require('../images/logo.png')}>
 					</Image>
 				</View>
 				<View style ={styles.infoContainer}> 
-					<TextInputField
+					<TextInputField style ={styles.input}
 						label='Username'
 						placeholder='username'
+						placeholderTextColor='#000000'
 						value={this.state.username}
 						onChangeText={username => this.setState({ username })}
 						autoCorrect={false}
+						underlineColorAndroid={'transparent'}
 					/>
 
-					<TextInputField
+					<TextInputField style ={styles.input}
 						label='Password'
 						placeholder='password'
+						placeholderTextColor='#000000'
 						value={this.state.password}
 						onChangeText={password => this.setState({ password })}
 						autoCorrect={false}
 						secureTextEntry
+						underlineColorAndroid={'transparent'}
 					/>
 					
 					<Text style={styles.errorTextStyle}>
@@ -69,7 +80,7 @@ class SignInForm extends React.Component {
 					</Text>
 					{this.renderButtonOrLoading()}
 				</View>
-			</SafeAreaView>
+			</KeyboardAvoidingView>
 		);
 	}
 }

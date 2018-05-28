@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
 		alignSelf: 'center'
 	},
 	logo:{
-		width: 140,
-		height:125,
+		width: 160,
+		height:130,
 	},
 	infoContainer:{
 		position: 'absolute',
@@ -32,8 +32,15 @@ const styles = StyleSheet.create({
 		right: 0,
 		bottom: 0,
 		padding: 50,
+	},
+ 	input:{
+		height: 40,
+		backgroundColor: 'rgba(255,255,255,0.2)',
+		color: '#fff',
+		marginBottom:15,
+		paddingHorizontal: 10,
+		fontSize:19
 	}
-
 });
 
 export default styles;
