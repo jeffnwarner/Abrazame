@@ -11,17 +11,21 @@ const styles = StyleSheet.create({
 		fontWeight: '200',
 		flex: 1,
 		height: 100,
-		width: 300,
+		width: 195,
 		borderColor: 'gray',
 		borderWidth: 1,
 	},
 	containerStyle: {
 		height: 50,
-		flexDirection: 'column',
+		//flexDirection: 'column',
 		alignItems: 'flex-start',
-		width: '100%',
-		borderColor: 'gray',
-		borderBottomWidth: 1
+		//width: '100%',
+		//borderColor: 'gray',
+		//borderBottomWidth: 1
+
+		marginBottom:15,
+		paddingHorizontal: 10,
+		fontSize:19
 	}
 })
 
