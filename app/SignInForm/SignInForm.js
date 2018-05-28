@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, SafeAreaView, Image } from 'react-native';
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
 import RegisterForm from '../RegisterForm/RegisterForm.js';
@@ -40,29 +40,36 @@ class SignInForm extends React.Component {
 
 	render() {
 		return (
-			<View> 
-				<TextInputField
-					label='Username'
-					placeholder='username'
-					value={this.state.username}
-					onChangeText={username => this.setState({ username })}
-					autoCorrect={false}
-				/>
+			<SafeAreaView style ={styles.container}>
+				<View style = {styles.logoContainer}>
+					<Image style = {styles.logo}
+						source ={require('../images/logo.png')}>
+					</Image>
+				</View>
+				<View style ={styles.infoContainer}> 
+					<TextInputField
+						label='Username'
+						placeholder='username'
+						value={this.state.username}
+						onChangeText={username => this.setState({ username })}
+						autoCorrect={false}
+					/>
 
-				<TextInputField
-					label='Password'
-					autoCorrect={false}
-					placeholder='password'
-					secureTextEntry
-					value={this.state.password}
-					onChangeText={password => this.setState({ password })}
-				/>
-				
-				<Text style={styles.errorTextStyle}>
-					{this.state.error}
-				</Text>
-				{this.renderButtonOrLoading()}
-			</View>
+					<TextInputField
+						label='Password'
+						placeholder='password'
+						value={this.state.password}
+						onChangeText={password => this.setState({ password })}
+						autoCorrect={false}
+						secureTextEntry
+					/>
+					
+					<Text style={styles.errorTextStyle}>
+						{this.state.error}
+					</Text>
+					{this.renderButtonOrLoading()}
+				</View>
+			</SafeAreaView>
 		);
 	}
 }
