@@ -40,8 +40,14 @@ class ForgotPassword extends React.Component {
 		if (this.state.answer !== '') {
 			return (
 				<View>
-					<Button onPress={this.onAnswer.bind(this)} title="Submit" />
-					<Button onPress={() => navigate('SignIn', {})} title="Cancel" />
+					<Button onPress={this.onAnswer.bind(this)} 
+					title="Submit"
+					color="#453484"
+					 />
+					<Button onPress={() => navigate('SignIn', {})} 
+					title="Cancel"
+					color="#453484" 
+					/>
 				</View>
 			);
 		}

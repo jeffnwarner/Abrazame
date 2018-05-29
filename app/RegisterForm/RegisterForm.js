@@ -29,8 +29,14 @@ class RegisterForm extends React.Component {
 		else {
 			return (
 				<View>
-					<Button onPress={this.errorMessage.bind(this)} title="Create Account" />
-					<Button onPress={() => navigate('SignIn', {})} title="Already registered?" />
+					<Button onPress={this.errorMessage.bind(this)} 
+					title="Create Account"
+					color="#453484" 
+					/>
+					<Button onPress={() => navigate('SignIn', {})} 
+					title="Already registered?"
+					color="#453484" 
+					/>
 				</View>
 			);
 		}
