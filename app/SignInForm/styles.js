@@ -46,7 +46,12 @@ const styles = StyleSheet.create({
 		//left: 0,
 		//right: 0,
 		//bottom: 0,
-		padding: 5.5,
+		flex: 5,
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center'
+      //  justifyContent: 'space-between',
+
 	}
 });
 
