@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0,
 		bottom: 0,
-		padding: 50,
+		padding: 45,
 	},
  	input:{
 		height: 40,
@@ -40,6 +40,13 @@ const styles = StyleSheet.create({
 		marginBottom:15,
 		paddingHorizontal: 10,
 		fontSize:19
+	},
+	buttons:{
+		//position: 'absolute',
+		//left: 0,
+		//right: 0,
+		//bottom: 0,
+		padding: 5.5,
 	}
 });
 

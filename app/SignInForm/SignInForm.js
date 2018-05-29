@@ -30,15 +30,19 @@ class SignInForm extends React.Component {
 			return <Text>Loading...</Text>
 		}
 		return (
-			<View>
+			<View style = {styles.buttons}>
 				<Button onPress={this.onSignInPress.bind(this)} 
 				title="Log in" 
+				color="#453484"
+				
 				/>
 				<Button onPress={() => navigate('Register', {})} 
 				title="Create an account" 
+				color="#453484"
 				/>
 				<Button onPress={() => navigate('Forgot', {})} 
-				title="Forgot Password?" 
+				title="Forgot Password?"
+				color="#453484" 
 				/>
 				
 			</View>
