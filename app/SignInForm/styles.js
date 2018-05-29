@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
 		//bottom: 0,
 		flex: 5,
 		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center'
+		//alignItems: 'center',
+		justifyContent: 'center',
+		//padding: 5
       //  justifyContent: 'space-between',
 
 	}
