@@ -7,25 +7,41 @@ import AdditionalInfo from './AdditionalInfo.js';
 import styles from './styles.js';
 
 class RegisterForm extends React.Component {
-	state = {email: '', password: '', reenterpassword: '', 
+	state = {username: '', password: '', reenterpassword: '', 
 		question1: '', question2: '', question3: '', 
 		answer1: '', answer2: '', answer3: '', error: '', loading: false};
 	static navigationOptions = { title: 'Register Form'};
 
 	renderButtonOrLoading() {
 		const { navigate } = this.props.navigation;
-		const { email, password } = this.state;
+		const { username, password } = this.state;
 		if (this.state.loading) {
 			return <Text>Loading...</Text>
 		} //<Button onPress={this.onRegisterPress.bind(this)} title="Create Account" />
-		if (this.state.password === this.state.reenterpassword && this.state.email !== '' && this.state.password !== '') {
+		if (this.state.password.length < 8) {
 			return (
 				<View>
-					<Button onPress={() => navigate('Additional', {email, password})} title="Create Account" />
+					<Button onPress={this.errorMessage.bind(this)} title="Create Account" />
 					<Button onPress={() => navigate('SignIn', {})} title="Already registered?" />
 				</View>
 			);
 		}
+
+		else if (this.state.password === this.state.reenterpassword && this.state.username !== '' && this.state.password !== '') {
+			return (
+				<View>
+					<Button onPress={() => navigate('Additional', {username, password})} 
+					title="Create Account"
+					color="#453484" 
+					/>
+					<Button onPress={() => navigate('SignIn', {})} 
+					title="Create Account"
+					color="#453484" 
+					/>
+				</View>
+			);
+		}
+		
 		else {
 			return (
 				<View>
@@ -43,22 +59,25 @@ class RegisterForm extends React.Component {
 	}
 
 	errorMessage() {
-		if (this.state.email === '' || this.state.password === '' || this.state.reenterpassword === '') {
+		if (this.state.username === '' || this.state.password === '' || this.state.reenterpassword === '') {
 			this.setState({ error: 'Please fill out all fields' });
 		}
 		else if (this.state.password !== this.state.reenterpassword) {
 			this.setState({ error: 'Passwords do not match' });
 		}
+		else if (this.state.password.length < 8) {
+			this.setState({ error: 'Password must be at least 8 characters'})
+		}
 	}
 
 	render() {
 		return (
-			<View style ={styles.container}> 
+			<View> 
 				<TextInputField
 					label='Username'
 					placeholder='username'
-					value={this.state.email}
-					onChangeText={email => this.setState({ email })}
+					value={this.state.username}
+					onChangeText={username => this.setState({ username })}
 					autoCorrect={false}
 				/>
 

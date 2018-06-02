@@ -57,3 +57,8 @@ buck-out/
 
 # env variables
 /.env
+
+# all folders basically
+android/
+images/
+ios/

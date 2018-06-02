@@ -20,6 +20,9 @@ import SignInForm from './app/SignInForm/SignInForm.js';
 import RegisterForm from './app/RegisterForm/RegisterForm.js';
 import AdditionalInfo from './app/RegisterForm/AdditionalInfo.js';
 import ForgotPassword from './app/SignInForm/ForgotPassword.js';
+import Feed from './app/Feed/Feed.js';
+import FirstPost from './app/Feed/FirstPost.js'
+import Post from './app/Feed/Post.js';
 //import Navigation from './app/components/Navigation.js';
 
 export default class Abrazame extends React.Component {
@@ -47,6 +50,9 @@ const Navigation = StackNavigator({
 	Register: {screen: RegisterForm},
 	Additional: {screen: AdditionalInfo},
 	Forgot: {screen: ForgotPassword},
+	Feed: {screen: Feed},
+	FirstPost: {screen: FirstPost},
+	Post: {screen: Post},
 });
 
 //export default Navigation;

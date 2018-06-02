@@ -9,22 +9,23 @@ class AdditionalInfo extends React.Component {
 	state = { username: this.props.navigation.state.params.username, password: this.props.navigation.state.params.password, reenterpassword: '', 
 		question1: '', question2: '', question3: '', 
 		answer1: '', answer2: '', answer3: '', city: '',
-		error: '', loading: false, email: this.props.navigation.state.params.username + "@abrazame.com", authSuccess: false };
+		error: '', loading: false, email: this.props.navigation.state.params.username + "@abrazame.com", authSuccess: false, logged: false };
 	static navigationOptions = { title: 'Additional Info'};
 
 	onRegisterPress() {
 		this.setState({ error: '', loading: true });
-		const { userame, password, question1, question2,
+		const { username, password, question1, question2,
 			question3, answer1, answer2, answer3, email, authSuccess, city } = this.state;
 		//authSuccess = false;
 		firebase.auth().createUserWithEmailAndPassword(email, password)
 		.then(() => {
-			this.setState({ error: '', loading: false, authSuccess: true });
+			this.setState({ error: '', loading: false, authSuccess: true, logged: true });
 			//authSuccess = true;
 		})
 		.catch(() => {
 			this.setState({ error: 'Username taken', loading: false });
 		})
+		this.setState({ loading: true});
 		if (this.state.error === '') {
 			userpath = "users/" + username;
 			firebase.database().ref(userpath).set({
@@ -35,24 +36,47 @@ class AdditionalInfo extends React.Component {
 				answer_2: answer2,
 				question_3: question3,
 				answer_3: answer3,
-				password: password
+				password: password,
+				postMade: false,
+				username: username
 			})
 			.then(() => {
 				this.setState({ error: '', loading: false});
+				//navigate('Feed');
 			})
 			.catch(() => {
 				this.setState({ error: 'Database failed.', loading: false });
 			})
 		}
+		if (this.state.error === '') {
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					user.updateProfile({
+						displayName: username,
+					})
+					.then(() => {
+						this.setState({ error: '', loading: false});
+						//navigate('Feed');
+					})
+					.catch(() => {
+						this.setState({ error: 'Database failed.', loading: false });
+					})
+				}
+			});
+		}
 	}
 
 	renderButtonOrLoading() {
 		const { navigate } = this.props.navigation;
+		const { username } = this.state;
 		if (this.state.loading) {
 			return <Text>Loading...</Text>
 		}
+		if (this.state.logged) {
+			navigate('Post', {username});
+		}
 		if (this.state.question1 !== '' && this.state.question2 !== '' && this.state.question3 !== '' &&
-			this.state.answer1 !== '' && this.state.answer2 !== '' && this.state.answer3 !== '' && this.state.city !== '') {
+			this.state.answer1 !== '' && this.state.answer2 !== '' && this.state.answer3 !== '') {
 			return (
 				<View>
 					<Button onPress={this.onRegisterPress.bind(this)} title="Submit" />
@@ -124,7 +148,7 @@ class AdditionalInfo extends React.Component {
 				/>
 
 				<TextInputField
-					label='City'
+					label='City (Optional)'
 					autoCorrect={false}
 					placeholder='City'
 					value={this.state.city}

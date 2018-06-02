@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Button, KeyboardAvoidingView, Image } from 'react-native';
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
 import RegisterForm from '../RegisterForm/RegisterForm.js';
@@ -7,8 +7,8 @@ import RegisterForm from '../RegisterForm/RegisterForm.js';
 import styles from './styles.js';
 
 class SignInForm extends React.Component {
-	state = {username: '', password: '', error: '', loading: false};
-	static navigationOptions = { title: 'Sign In'};
+	state = {username: '', password: '', error: '', loading: false, logged: false, };
+	static navigationOptions = { title: 'Sign In Form'};
 
 	onSignInPress() {
 		this.setState({ error: '', loading: true });
@@ -16,18 +16,21 @@ class SignInForm extends React.Component {
 		email = this.state.username + "@abrazame.com";
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.then(() => { 
-			this.setState({error: '', loading: false}); 
+			this.setState({error: '', loading: false, logged: true }); 
 			})
 		.catch(() => {
 			this.setState({ error: 'Invalid Username / Password', loading: false });
 		})
-		//navigate('Feed', {});
 	}
 
 	renderButtonOrLoading() {
 		const { navigate } = this.props.navigation;
+		const { username } = this.state;
 		if (this.state.loading) {
 			return <Text>Loading...</Text>
+		}
+		if (this.state.logged) {
+			navigate('Feed', {username});
 		}
 		return (
 			<View style = {styles.buttons}>
@@ -44,8 +47,8 @@ class SignInForm extends React.Component {
 				title="Forgot Password?"
 				color="#453484" 
 				/>
-				
 			</View>
+
 		);
 	}
 

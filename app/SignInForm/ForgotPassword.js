@@ -7,29 +7,34 @@ import RegisterForm from '../RegisterForm/RegisterForm.js';
 import styles from './styles.js';
 
 class ForgotPassword extends React.Component {
-	state = {username: '', password: '', error: '', loading: false, question: '', answer: ''};
+	state = {username: '', password: '', error: '', loading: false, question: '', answer: '', dataAnswer: ''};
 	static navigationOptions = { title: 'Forgot Password'};
 
 	onForgetPress() {
 		this.setState({ error: '', loading: true });
 		const { username, password } = this.state;
-		this.setState({ question: firebase.database().ref("users/" + username + "/question1")});
+		data = firebase.database().ref('users/' + username).child('question_1');
+		data.on('value', snapshot => {
+			this.setState ({question: snapshot.val()})
+		});
+		this.setState({ loading: false, error: 'did it work?'});
 	}
 
 	onAnswer() {
 		this.setState({ error: '', loading: true });
 		const { username, password } = this.state;
-		firebase.database().ref("users/" + email).once('answer1', function(snapshot) {
-			if (this.state.answer === snapshot.val()) {
-				this.setState({ password: firebase.database().ref("users/" + username + "/password")});
-				return (
-					<View>
-						<Text>Your Password is</Text>
-						<Text>{this.state.password}</Text>
-					</View>
-				);
-			}
+		data = firebase.database().ref('users/' + username).child('answer_1');
+		data.on('value', snapshot => {
+			this.setState ({dataAnswer: snapshot.val()})
 		});
+		if (this.state.answer === this.state.dataAnswer) {
+			data = firebase.database().ref('users/' + username).child('password');
+			data.on('value', snapshot => {
+				this.setState({password: "Your password is " + snapshot.val()})
+			});
+			this.setState({ loading: false, error: ''})
+		}
+		this.setState({ loading: false, error: 'did it work?'});
 	}
 
 	renderButtonOrLoading() {
@@ -54,16 +59,28 @@ class ForgotPassword extends React.Component {
 		else if (this.state.username !== '') {
 			return (
 				<View>
-					<Button onPress={this.onForgetPress.bind(this)} title="Submit" />
-					<Button onPress={() => navigate('SignIn', {})} title="Cancel" />
+					<Button onPress={this.onForgetPress.bind(this)} 
+					title="Submit"
+					color="#453484"
+					 />
+					<Button onPress={() => navigate('SignIn', {})} 
+					title="Submit"
+					color="#453484"
+					 />
 				</View>
 			);
 		}
 		else {
 			return (
 				<View>
-					<Button onPress={this.errorMessage.bind(this)} title="Submit" />
-					<Button onPress={() => navigate('SignIn', {})} title="Cancel" />
+					<Button onPress={this.errorMessage.bind(this)} 
+					title="Submit"
+					color="#453484"
+					 />
+					<Button onPress={() => navigate('SignIn', {})} 
+					title="Submit"
+					color="#453484"
+					 />
 				</View>
 			);
 		}
@@ -93,6 +110,18 @@ class ForgotPassword extends React.Component {
 					{this.state.question}
 				</Text>
 				
+				<TextInputField
+					label='Answer'
+					placeholder='Answer'
+					value={this.state.answer}
+					onChangeText={answer => this.setState({ answer })}
+					autoCorrect={false}
+				/>
+
+				<Text>
+					{this.state.password}
+				</Text>
+
 				<Text style={styles.errorTextStyle}>
 					{this.state.error}
 				</Text>
