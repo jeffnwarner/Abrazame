@@ -23,6 +23,8 @@ import ForgotPassword from './app/SignInForm/ForgotPassword.js';
 import Feed from './app/Feed/Feed.js';
 import FirstPost from './app/Feed/FirstPost.js'
 import Post from './app/Feed/Post.js';
+import Map from './app/Map/Map.js';
+import NLP from './app/NLP/NLP.js';
 //import Navigation from './app/components/Navigation.js';
 
 export default class Abrazame extends React.Component {
@@ -53,6 +55,8 @@ const Navigation = StackNavigator({
 	Feed: {screen: Feed},
 	FirstPost: {screen: FirstPost},
 	Post: {screen: Post},
+	Map: {screen: Map},
+	NLP: {screen: NLP},
 });
 
 //export default Navigation;

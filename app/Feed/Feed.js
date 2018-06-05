@@ -58,6 +58,8 @@ class Feed extends React.Component {
 
 		return (
 			<View style={styles.container}>
+				<Button onPress={() => navigate('Map', {})} title="Map" />
+				<Button onPress={() => navigate('NLP', {})} title="NLP" />
 				<Button onPress={() => navigate('Post', {})} title="Make A Post" />
 				<ListView
 					dataSource={this.state.dataSource}

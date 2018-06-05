@@ -3,7 +3,7 @@ import { Button } from 'react-native';
 
 
 const fetchLocation = props => {
-    return( <Button title = "Asignar Ubicación" /*"Set location"*/ onPress={props.onGetLocation}/>
+    return( <Button title = "Set location" onPress={props.onGetLocation}/>
 );
 };
 
