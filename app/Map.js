@@ -127,12 +127,12 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <View style={ {marginBottom: 20, marginEnd: 10}} >
-          <Button title= "Obtener Mapa de Calor" /*"Get Heatmap"*/ onPress=
+          <Button title= "Get Heatmap" /*"Get Heatmap"*/ onPress=
           { this.getUserPlacesHandler} />
         </View>
 
         <View style={ {marginBottom: 20, marginEnd: 10 }} >
-          <Button title= "Obtener Recursos"/* "Get Resources" */ onPress=
+          <Button title= "Get Resources" onPress=
           { this.getUserResourcesHandler} />
         </View>
         {/* <Text>It works so far</Text> */}
