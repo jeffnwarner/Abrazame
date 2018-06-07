@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Button, KeyboardAvoidingView, Image } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Buton,Image } from 'react-native';
+import {Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons';
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
 import RegisterForm from '../RegisterForm/RegisterForm.js';
@@ -27,7 +29,7 @@ class SignInForm extends React.Component {
 		const { navigate } = this.props.navigation;
 		const { username } = this.state;
 		if (this.state.loading) {
-			return <Text>Loading...</Text>
+			return <Text loading>Loading...</Text>
 		}
 		if (this.state.logged) {
 			navigate('Feed', {username});
@@ -35,17 +37,42 @@ class SignInForm extends React.Component {
 		return (
 			<View style = {styles.buttons}>
 				<Button onPress={this.onSignInPress.bind(this)} 
-				title="Log in" 
-				color="#453484"
-				
+				title="Login" 
+				titleStyle={{ fontWeight: "700" }}
+				buttonStyle={{
+					backgroundColor: "#453484",
+					width: 250,
+					height: 39,
+					borderColor: "transparent",
+					borderWidth: 0,
+					borderRadius: 19
+				}}
+				containerStyle={{ marginTop: 20 }}
 				/>
 				<Button onPress={() => navigate('Register', {})} 
-				title="Create an account" 
-				color="#453484"
+				title="Create an Account" 
+				titleStyle={{ fontWeight: "700" }}
+				buttonStyle={{
+					backgroundColor: "#453484",
+					width: 250,
+					height: 39,
+					borderColor: "transparent",
+					borderWidth: 0,
+					borderRadius: 19
+				}}
+				containerStyle={{ marginTop: 20 }}
 				/>
 				<Button onPress={() => navigate('Forgot', {})} 
 				title="Forgot Password?"
-				color="#453484" 
+				titleStyle={{ fontWeight: "700" }}
+				buttonStyle={{
+					backgroundColor: "#453484",
+					width: 250,
+					height: 39,
+					borderColor: "transparent",
+					borderWidth: 0,
+					borderRadius: 19
+				}}
 				/>
 			</View>
 
