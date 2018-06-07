@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert, PermissionsAndroid } from 'react-native';
+import { StyleSheet, Text, View, Alert, PermissionsAndroid } from 'react-native';
+import{Button} from 'react-native-elements';
 import FetchLocation from './components/FetchLocation';
 import UsersMap from './components/UsersMap';
 
@@ -127,8 +128,19 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <View style={ {marginBottom: 20, marginEnd: 10}} >
-          <Button title= "Get Heatmap" /*"Get Heatmap"*/ onPress=
-          { this.getUserPlacesHandler} />
+          <Button  onPress={this.getUserPlacesHandler}
+          title= "Get Heatmap" 
+          titleStyle={{ fontWeight: "700" }}
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10
+					}}
+          />
         </View>
 
         <View style={ {marginBottom: 20, marginEnd: 10 }} >

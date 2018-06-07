@@ -13,9 +13,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 		alignItems: 'center'
-	},
-	cardcontainer:{
-		borderRadius: 30
 	}
 });
 
