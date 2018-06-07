@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
 	},
 	infoContainer:{
 		position: 'absolute',
+		alignItems: 'center',
 		left: 0,
 		right: 0,
 		bottom: 0,
@@ -41,19 +42,16 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 10,
 		fontSize:19
 	},
-	buttons:{
-		//position: 'absolute',
-		//left: 0,
-		//right: 0,
-		//bottom: 0,
-		flex: 5,
+	buttoncontainer:{
+		flex: 1,
 		flexDirection: 'column',
-		//alignItems: 'center',
-		justifyContent: 'center',
-		//padding: 5
-      //  justifyContent: 'space-between',
-
+		alignItems: 'center',
+		justifyContent: 'space-between'
+	},
+	buttons:{
+		flex: 1,
 	}
+
 });
 
 export default styles;

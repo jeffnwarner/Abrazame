@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Card} from 'react-native-elements';
 import { View, Text, Button, TextInput, ListView, TouchableHighlight, Platform, TouchableNativeFeedback, TouchableElement } from 'react-native'; 
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
@@ -21,13 +22,13 @@ class Feed extends React.Component {
 
 	renderItem(item) {
 		return (
-		<TouchableHighlight>
+		<Card>
 			<View>
 				<Text>{item.username}</Text>
 				<Text>{item.time}</Text>
 				<Text>{item.post}</Text>
 			</View>
-		</TouchableHighlight>
+		</Card>
 		)
 	}
 

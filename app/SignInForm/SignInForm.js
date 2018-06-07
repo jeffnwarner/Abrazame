@@ -35,45 +35,49 @@ class SignInForm extends React.Component {
 			navigate('Feed', {username});
 		}
 		return (
-			<View style = {styles.buttons}>
-				<Button onPress={this.onSignInPress.bind(this)} 
-				title="Login" 
-				titleStyle={{ fontWeight: "700" }}
-				buttonStyle={{
-					backgroundColor: "#453484",
-					width: 250,
-					height: 39,
-					borderColor: "transparent",
-					borderWidth: 0,
-					borderRadius: 19
-				}}
-				containerStyle={{ marginTop: 20 }}
-				/>
-				<Button onPress={() => navigate('Register', {})} 
-				title="Create an Account" 
-				titleStyle={{ fontWeight: "700" }}
-				buttonStyle={{
-					backgroundColor: "#453484",
-					width: 250,
-					height: 39,
-					borderColor: "transparent",
-					borderWidth: 0,
-					borderRadius: 19
-				}}
-				containerStyle={{ marginTop: 20 }}
-				/>
-				<Button onPress={() => navigate('Forgot', {})} 
-				title="Forgot Password?"
-				titleStyle={{ fontWeight: "700" }}
-				buttonStyle={{
-					backgroundColor: "#453484",
-					width: 250,
-					height: 39,
-					borderColor: "transparent",
-					borderWidth: 0,
-					borderRadius: 19
-				}}
-				/>
+			<View style = {styles.container}>
+				<View style = {styles.buttons}>
+					<Button onPress={this.onSignInPress.bind(this)} 
+					title="Login" 
+					titleStyle={{ fontWeight: "700" }}
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10
+					}}
+					containerStyle={{ marginTop: 20 }}
+					/>
+					<Button onPress={() => navigate('Register', {})} 
+					title="Create an Account" 
+					titleStyle={{ fontWeight: "700" }}
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19
+						
+					}}
+					containerStyle={{ marginTop: 20 }}
+					/>
+					<Button onPress={() => navigate('Forgot', {})} 
+					title="Forgot Password?"
+					titleStyle={{ fontWeight: "700" }}
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19
+					}}
+					/>
+					</View>
 			</View>
 
 		);
