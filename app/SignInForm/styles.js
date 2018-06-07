@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
 	logoContainer:{
 		//alignItems: 'center',
 		//justifyContent: 'center',
-		flex: 1,
-		height: 30,
-		width: -60,
+		//flex: 1,
+		//height: 50,
+		//width: -60,
 		//position: 'absolute',
 		alignSelf: 'center'
 	},
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0,
 		bottom: 0,
-		padding: 45,
+		padding: 80,
 	},
  	input:{
 		height: 40,

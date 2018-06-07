@@ -64,7 +64,7 @@ class ForgotPassword extends React.Component {
 					color="#453484"
 					 />
 					<Button onPress={() => navigate('SignIn', {})} 
-					title="Submit"
+					title="Cancel"
 					color="#453484"
 					 />
 				</View>
@@ -78,7 +78,7 @@ class ForgotPassword extends React.Component {
 					color="#453484"
 					 />
 					<Button onPress={() => navigate('SignIn', {})} 
-					title="Submit"
+					title="Cancel"
 					color="#453484"
 					 />
 				</View>
