@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		paddingTop: 10,
 		paddingBottom: 10
+	},
+	buttoncontainer:{
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'space-between',
+		alignItems: 'center'
 	}
 });
 

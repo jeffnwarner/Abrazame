@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, KeyboardAvoidingView, Buton,Image } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Image } from 'react-native';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons';
 import firebase from 'firebase';
@@ -29,7 +29,7 @@ class SignInForm extends React.Component {
 		const { navigate } = this.props.navigation;
 		const { username } = this.state;
 		if (this.state.loading) {
-			return <Text loading>Loading...</Text>
+			return <Text>Loading...</Text>
 		}
 		if (this.state.logged) {
 			navigate('Feed', {username});

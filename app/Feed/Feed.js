@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Card} from 'react-native-elements';
-import { View, Text, Button, TextInput, ListView, TouchableOpacity, Platform, TouchableNativeFeedback, TouchableElement } from 'react-native'; 
+import {Card, Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons';
+import { View, Text, TextInput, ListView, TouchableOpacity, Platform, TouchableNativeFeedback, TouchableElement } from 'react-native'; 
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
 import SignInForm from '../SignInForm/SignInForm.js';
@@ -28,7 +29,7 @@ class Feed extends React.Component {
 
 	renderItem(item) {
 		return (
-		<Card>
+		<Card style = {styles.cardcontainer}>
 			<TouchableOpacity onPress={() => {this._navigateToComments(item.username, item.time, item.post)}}>
 				<View>
 					<Text>{item.username}</Text>
@@ -63,10 +64,50 @@ class Feed extends React.Component {
 
 
 		return (
-			<View style={styles.container}>
-				<Button onPress={() => navigate('Map', {})} title="Map" />
-				<Button onPress={() => navigate('NLP', {})} title="NLP" />
-				<Button onPress={() => navigate('Post', {})} title="Make A Post" />
+			<View style={styles.buttoncontainer}>
+				<Button onPress={() => navigate('Map', {})} 
+				title="Map"
+				titleStyle={{ fontWeight: "700" }}
+				
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10
+					}}
+					containerStyle={{ marginTop: 20 }}
+				 />
+				<Button onPress={() => navigate('NLP', {})} 
+				title="NLP"
+				titleStyle={{ fontWeight: "700" }}
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10
+					}}
+					containerStyle={{ marginTop: 20 }}
+				 />
+				<Button onPress={() => navigate('Post', {})} 
+				title="Make A Post"
+				titleStyle={{ fontWeight: "700" }}
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10
+					}}
+					containerStyle={{ marginTop: 20 }}
+				 />
 				<ListView
 					dataSource={this.state.dataSource}
 					renderRow={this.renderItem.bind(this)} />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native'; 
+import { View, Text} from 'react-native';
+import{Button} from 'react-native-elements'; 
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
 import SignInForm from '../SignInForm/SignInForm.js';
@@ -20,9 +21,37 @@ class RegisterForm extends React.Component {
 		} //<Button onPress={this.onRegisterPress.bind(this)} title="Create Account" />
 		if (this.state.password.length < 8) {
 			return (
-				<View>
-					<Button onPress={this.errorMessage.bind(this)} title="Create Account" />
-					<Button onPress={() => navigate('SignIn', {})} title="Already registered?" />
+				<View style = {styles.buttoncontainer}>
+					<Button onPress={this.errorMessage.bind(this)} 
+					title="Create Account"
+					titleStyle={{ fontWeight: "700" }}
+				
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10
+					}}
+					containerStyle={{ marginTop: 20 }} 
+					/>
+					<Button onPress={() => navigate('SignIn', {})} 
+					title="Already registered?" 
+					titleStyle={{ fontWeight: "700" }}
+				
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10
+					}}
+					containerStyle={{ marginTop: 20 }} 
+					/>
 				</View>
 			);
 		}
