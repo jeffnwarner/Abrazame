@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, Alert } from 'react-native';
 import MapView from 'react-native-maps';
 import { Callout } from 'react-native-maps';
-import * as myConstants from './myConstantsClass';
+import * as myConstants from './myConstantsClass.js';
 
 
 const myStory = "Open Story";
@@ -39,8 +39,8 @@ const markerAlert = function(){
         <View style={styles.mapContainer}> 
             <MapView
                 initialRegion={{
-                    latitude: 37.4220,
-                    longitude: -122.0840,
+                    latitude: 38.5449,
+                    longitude: -121.7405,
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                   }}
@@ -49,7 +49,7 @@ const markerAlert = function(){
                 //customMapStyle = {myConstants.nightMapStyle} 
                 //zoomEnabled = {false}
                 mapType = {"standard"}
-                maxZoomLevel = {10}
+                maxZoomLevel = {12}
                 showsPointsOfInterest = {true}
                 onCalloutPress = { markerAlert }
                 >

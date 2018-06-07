@@ -21,7 +21,7 @@ import RegisterForm from './app/RegisterForm/RegisterForm.js';
 import AdditionalInfo from './app/RegisterForm/AdditionalInfo.js';
 import ForgotPassword from './app/SignInForm/ForgotPassword.js';
 import Feed from './app/Feed/Feed.js';
-import FirstPost from './app/Feed/FirstPost.js'
+import Comments from './app/Feed/Comments.js'
 import Post from './app/Feed/Post.js';
 import Map from './app/Map/Map.js';
 import NLP from './app/NLP/NLP.js';
@@ -37,6 +37,7 @@ export default class Abrazame extends React.Component {
 			storageBucket: STORAGE_BUCKET,
 			messagingSenderId: MESSAGE_ID
 		});
+		console.disableYellowBox = true;
 	}
 	render() {
 		return (
@@ -53,8 +54,8 @@ const Navigation = StackNavigator({
 	Additional: {screen: AdditionalInfo},
 	Forgot: {screen: ForgotPassword},
 	Feed: {screen: Feed},
-	FirstPost: {screen: FirstPost},
 	Post: {screen: Post},
+	Comments: {screen: Comments},
 	Map: {screen: Map},
 	NLP: {screen: NLP},
 });

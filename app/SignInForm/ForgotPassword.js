@@ -7,34 +7,67 @@ import RegisterForm from '../RegisterForm/RegisterForm.js';
 import styles from './styles.js';
 
 class ForgotPassword extends React.Component {
-	state = {username: '', password: '', error: '', loading: false, question: '', answer: '', dataAnswer: ''};
-	static navigationOptions = { title: 'Forgot Password'};
+	state = {username: '', password: '', error: '', loading: false, question: '', answer: '', dataAnswer: '', rand: 1};
+	static navigationOptions = { title: 'Forgot Password', headerLeft: null};
 
+	componentWillMount() {
+		this.getRandIndex();
+	}
+
+	getRandIndex() {
+		this.setState({ rand: Math.floor(Math.random() * (3 - 1 + 1)) + 1 });
+	}
+	
 	onForgetPress() {
 		this.setState({ error: '', loading: true });
-		const { username, password } = this.state;
-		data = firebase.database().ref('users/' + username).child('question_1');
+		const { username, password, rand } = this.state;
+		data = firebase.database().ref('users/' + username).child('question_' + rand);
 		data.on('value', snapshot => {
-			this.setState ({question: snapshot.val()})
+			this.setState ({question: snapshot.val()});
 		});
-		this.setState({ loading: false, error: 'did it work?'});
+		this.setState({ loading: true, error: ''});
+		data = firebase.database().ref('users/' + username).child('answer_' + rand);
+		data.on('value', snapshot => {
+			this.setState ({dataAnswer: snapshot.val()});
+		});
+		this.setState({ error: '', loading: false });
+
 	}
 
 	onAnswer() {
 		this.setState({ error: '', loading: true });
-		const { username, password } = this.state;
-		data = firebase.database().ref('users/' + username).child('answer_1');
-		data.on('value', snapshot => {
-			this.setState ({dataAnswer: snapshot.val()})
-		});
-		if (this.state.answer === this.state.dataAnswer) {
-			data = firebase.database().ref('users/' + username).child('password');
-			data.on('value', snapshot => {
-				this.setState({password: "Your password is " + snapshot.val()})
-			});
-			this.setState({ loading: false, error: ''})
+		const { username, password, rand, } = this.state;
+		if (this.state.dataAnswer !== '') {
+			if (this.state.answer === this.state.dataAnswer) {
+				data = firebase.database().ref('users/' + username).child('password');
+				data.on('value', snapshot => {
+					this.setState({password: "Your password is " + snapshot.val()});
+				});
+				this.setState({ loading: false, error: ''});
+			}
+			else {
+				this.setState({ loading: false, error: 'Wrong Answer'});
+			}
 		}
-		this.setState({ loading: false, error: 'did it work?'});
+		else {
+			this.setState({ error: 'Database Error', loading: false });
+		}
+	}
+
+	renderAnswerBox() {
+		if (this.state.question !== '') {
+			return (
+				<View>
+				<TextInputField
+					label='Answer'
+					placeholder='Answer'
+					value={this.state.answer}
+					onChangeText={answer => this.setState({ answer })}
+					autoCorrect={false}
+				/>
+				</View>
+			);
+		}
 	}
 
 	renderButtonOrLoading() {
@@ -42,6 +75,7 @@ class ForgotPassword extends React.Component {
 		if (this.state.loading) {
 			return <Text>Loading...</Text>
 		}
+		//this.renderAnswerBox();
 		if (this.state.answer !== '') {
 			return (
 				<View>
@@ -64,7 +98,7 @@ class ForgotPassword extends React.Component {
 					color="#453484"
 					 />
 					<Button onPress={() => navigate('SignIn', {})} 
-					title="Submit"
+					title="Cancel"
 					color="#453484"
 					 />
 				</View>
@@ -78,7 +112,7 @@ class ForgotPassword extends React.Component {
 					color="#453484"
 					 />
 					<Button onPress={() => navigate('SignIn', {})} 
-					title="Submit"
+					title="Cancel"
 					color="#453484"
 					 />
 				</View>
@@ -109,23 +143,14 @@ class ForgotPassword extends React.Component {
 				<Text style={styles.errorTextStyle}>
 					{this.state.question}
 				</Text>
-				
-				<TextInputField
-					label='Answer'
-					placeholder='Answer'
-					value={this.state.answer}
-					onChangeText={answer => this.setState({ answer })}
-					autoCorrect={false}
-				/>
-
-				<Text>
-					{this.state.password}
-				</Text>
-
+				{this.renderAnswerBox()}
 				<Text style={styles.errorTextStyle}>
 					{this.state.error}
 				</Text>
 				{this.renderButtonOrLoading()}
+				<Text>
+					{this.state.password}
+				</Text>
 			</View>
 		);
 	}

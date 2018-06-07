@@ -30,7 +30,7 @@ allprojects {
 
 ext {
     compileSdkVersion = 23
-    buildToolsVersion = '25.0.2'
+    //buildToolsVersion = '25.0.2'
 }
 
 subprojects { subproject ->
@@ -38,7 +38,7 @@ subprojects { subproject ->
         if((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
             android {
                 compileSdkVersion rootProject.ext.compileSdkVersion
-                buildToolsVersion rootProject.ext.buildToolsVersion
+                //buildToolsVersion rootProject.ext.buildToolsVersion
             }
         }
     }

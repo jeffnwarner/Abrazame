@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, PermissionsAndroid } from 'react-native';
-import FetchLocation from '../components/FetchLocation';
-import UsersMap from '../components/UsersMap';
+import FetchLocation from './FetchLocation.js';
+import UsersMap from './UsersMap.js';
 
 
-export default class Maps extends React.Component {
+export default class App extends React.Component {
 
   
 //   async requestLocationPermission() {
@@ -127,7 +127,7 @@ export default class Maps extends React.Component {
     return (
       <View style={styles.container}>
         <View style={ {marginBottom: 20, marginEnd: 10}} >
-          <Button title= "Get Heatmap" onPress=
+          <Button title= "Get Heatmap" /*"Get Heatmap"*/ onPress=
           { this.getUserPlacesHandler} />
         </View>
 

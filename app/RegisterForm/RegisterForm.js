@@ -10,7 +10,7 @@ class RegisterForm extends React.Component {
 	state = {username: '', password: '', reenterpassword: '', 
 		question1: '', question2: '', question3: '', 
 		answer1: '', answer2: '', answer3: '', error: '', loading: false};
-	static navigationOptions = { title: 'Register Form'};
+	static navigationOptions = { title: 'Register Form', headerLeft: null};
 
 	renderButtonOrLoading() {
 		const { navigate } = this.props.navigation;

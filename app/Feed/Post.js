@@ -8,7 +8,7 @@ import styles from './styles.js';
 
 class Post extends React.Component {
 	state = { post: '', error: '', loading: false, username: '', submit: false, postMade: false, shortEmail: '', email: '' };
-	static navigationOptions = { title: 'Post'};
+	static navigationOptions = { title: 'Post', headerLeft: null };
 
 	componentWillMount() {
 		this.getUsername();
@@ -40,14 +40,14 @@ class Post extends React.Component {
 		const { post, username } = this.state;
 		
 		time = new Date();
-		filepath = "posts/" + time.toISOString();
+		filepath = "posts/" + time.toString();
 		firebase.database().ref(filepath).set({
 			post: post,
 			username: username,
-			time: time.toISOString()
+			time: time.toString()
 		})
 		.then(() => {
-			this.setState({ error: '', loading: false, submit: true });
+			this.setState({ error: '', loading: false, });
 		})
 		.catch(() => {
 			this.setState({ error: 'Database failed.', loading: false });
@@ -80,13 +80,15 @@ class Post extends React.Component {
 			return (
 				<View>
 					<Button onPress={this.onPostPress.bind(this)} title="Post" />
-				</View>
+					<Button onPress={() => navigate('Feed', {})} title="Cancel" />
+				</View> 
 			);
 		}
 		else {
 			return (
 				<View>
 					<Button onPress={this.errorMessage.bind(this)} title="Post" />
+					<Button onPress={() => navigate('Feed', {})} title="Cancel" />
 				</View>
 			);
 		}

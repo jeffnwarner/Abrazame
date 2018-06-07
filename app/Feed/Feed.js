@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {Card} from 'react-native-elements';
-import { View, Text, Button, TextInput, ListView, TouchableHighlight, Platform, TouchableNativeFeedback, TouchableElement } from 'react-native'; 
+import { View, Text, Button, TextInput, ListView, TouchableOpacity, Platform, TouchableNativeFeedback, TouchableElement } from 'react-native'; 
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
-import FeedList from './FeedList.js';
 import SignInForm from '../SignInForm/SignInForm.js';
 import styles from './styles.js';
 
@@ -15,19 +14,28 @@ class Feed extends React.Component {
 		};
 		this.itemsRef = firebase.database().ref('posts');
 	}
+	static navigationOptions = { title: 'Feed', headerLeft: null};
+
 
 	componentDidMount() {
 		this.listenForItems(this.itemsRef);
 	}
 
+	_navigateToComments(username, time, post) {
+		const { navigate } = this.props.navigation;
+		navigate('Comments', {username, time, post});	
+	}
+
 	renderItem(item) {
 		return (
 		<Card>
-			<View>
-				<Text>{item.username}</Text>
-				<Text>{item.time}</Text>
-				<Text>{item.post}</Text>
-			</View>
+			<TouchableOpacity onPress={() => {this._navigateToComments(item.username, item.time, item.post)}}>
+				<View>
+					<Text>{item.username}</Text>
+					<Text>{item.time}</Text>
+					<Text>{item.post}</Text>
+				</View>
+			</TouchableOpacity>
 		</Card>
 		)
 	}
@@ -52,10 +60,7 @@ class Feed extends React.Component {
 
 	render() {
 		const { navigate } = this.props.navigation;
-		var TouchableElement = TouchableHighlight;
-		if (Platform.OS === 'android') {
-			TouchableElement = TouchableNativeFeedback;
-		}
+
 
 		return (
 			<View style={styles.container}>

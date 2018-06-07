@@ -10,7 +10,7 @@ import styles from './styles.js';
 
 class SignInForm extends React.Component {
 	state = {username: '', password: '', error: '', loading: false, logged: false, };
-	static navigationOptions = { title: 'Sign In Form'};
+	static navigationOptions = { title: 'Sign In Form', headerLeft: null};
 
 	onSignInPress() {
 		this.setState({ error: '', loading: true });
