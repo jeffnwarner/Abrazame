@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert, PermissionsAndroid } from 'react-native';
+import { StyleSheet, Text, View, Alert, PermissionsAndroid } from 'react-native';
+import{Button} from 'react-native-elements';
 import FetchLocation from './FetchLocation.js';
 import UsersMap from './UsersMap.js';
 
@@ -127,17 +128,41 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <View style={ {marginBottom: 20, marginEnd: 10}} >
-          <Button title= "Get Heatmap" /*"Get Heatmap"*/ onPress=
-          { this.getUserPlacesHandler} />
+          <Button title= "Heatmap" /*"Get Heatmap"*/ onPress=
+          { this.getUserPlacesHandler}
+          titleStyle={{ fontWeight: "700" }}
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 90,
+						height: 42,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10
+					}}
+           
+          />
         </View>
 
         <View style={ {marginBottom: 20, marginEnd: 10 }} >
-          <Button title= "Get Resources" onPress=
-          { this.getUserResourcesHandler} />
+          <Button title= "Resources" onPress=
+          { this.getUserResourcesHandler}
+          titleStyle={{ fontWeight: "700" }}
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 90,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10
+					}} 
+          />
         </View>
         {/* <Text>It works so far</Text> */}
         
-        <FetchLocation onGetLocation={this.getUserLocationHandler} /> 
+        <FetchLocation onGetLocation={this.getUserLocationHandler} 
+        /> 
         <UsersMap     //details to render on the map component
         userLocation = {this.state.userLocation} 
         usersPlaces = {this.state.usersPlaces}
