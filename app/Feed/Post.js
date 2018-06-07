@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TextInput } from 'react-native'; 
+import { View, Text,TextInput } from 'react-native';
+import{Button} from 'react-native-elements'; 
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
 import SignInForm from '../SignInForm/SignInForm.js';
@@ -79,7 +80,8 @@ class Post extends React.Component {
 		if (this.state.post != '') {
 			return (
 				<View>
-					<Button onPress={this.onPostPress.bind(this)} title="Post" />
+					<Button onPress={this.onPostPress.bind(this)} title="Post"
+					 />
 					<Button onPress={() => navigate('Feed', {})} title="Cancel" />
 				</View> 
 			);
@@ -87,8 +89,36 @@ class Post extends React.Component {
 		else {
 			return (
 				<View>
-					<Button onPress={this.errorMessage.bind(this)} title="Post" />
-					<Button onPress={() => navigate('Feed', {})} title="Cancel" />
+					<Button onPress={this.errorMessage.bind(this)} title="Post"
+					titleStyle={{ fontWeight: "700" }}
+				
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10,
+						//alignself: 'center'
+					}}
+					containerStyle={{ marginTop: 20 }} 
+					 />
+					<Button onPress={() => navigate('Feed', {})} title="Cancel"
+					titleStyle={{ fontWeight: "700" }}
+				
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10,
+						//alignself: 'center'
+					}}
+					containerStyle={{ marginTop: 20 }} 
+					 />
 				</View>
 			);
 		}

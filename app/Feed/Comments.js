@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TextInput, ListView } from 'react-native'; 
-import {Card} from 'react-native-elements';
+import { View, Text, TextInput, ListView } from 'react-native'; 
+import {Card, Button} from 'react-native-elements';
 import firebase from 'firebase';
 import TextInputField from '../components/TextInputField.js';
 import SignInForm from '../SignInForm/SignInForm.js';
@@ -74,7 +74,21 @@ class Comments extends React.Component {
 		if (this.state.post != '') {
 			return (
 				<View>
-					<Button onPress={this.onPostPress.bind(this)} title="Comment" />
+					<Button onPress={this.onPostPress.bind(this)} title="Comment"
+					titleStyle={{ fontWeight: "700" }}
+				
+					buttonStyle={{
+						backgroundColor: "#453484",
+						width: 250,
+						height: 39,
+						borderColor: "transparent",
+						borderWidth: 0,
+						borderRadius: 19,
+						paddingBottom: 10,
+						//alignself: 'center'
+					}}
+					containerStyle={{ marginTop: 20 }} 
+					/>
 				</View>
 			);
 		}
